@@ -41,6 +41,7 @@ class Login extends CI_Controller {
                 $userdata = array(
                     'user_id' => (int)$user->id,
                     'email' => (string)$user->email,
+                    'name' => (string)$user->name,
                     'logged_in' => (bool)true,
                     'is_admin' => (bool)$user->is_admin
                 );

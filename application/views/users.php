@@ -16,17 +16,17 @@
 
     <div class="container-fluid">
       <div class="row">
-        <?php $this->load->view('common/sidemenu', array('current_page' => 'home')) ?>
+        <?php $this->load->view('common/sidemenu', array('current_page' => 'users')) ?>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Bienvenido</h1>
+            <h1 class="h2">Usuarios</h1>
           </div>
         </main>
       </div>
     </div>
 
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   </body>
 </html>

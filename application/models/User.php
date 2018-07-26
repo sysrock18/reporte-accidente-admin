@@ -22,6 +22,7 @@ class User extends CI_Model {
     public function resolve_user_login($email, $password) {
         $this->db->from('users');
         $this->db->where('email', $email);
+        $this->db->where('is_admin', 1);
         $user = $this->db->get()->row();
         
         if ($this->verify_password_hash($password, $user->password)) {
