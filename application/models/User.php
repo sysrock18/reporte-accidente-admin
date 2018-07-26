@@ -49,11 +49,13 @@ class User extends CI_Model {
         $this->db->where('is_admin', 1);
         $user = $this->db->get()->row();
         
-        if ($this->verify_password_hash($password, $user->password)) {
-            return $user->id;
-        } else {
-            return false;
+        if ($user) {
+            if ($this->verify_password_hash($password, $user->password)) {
+                return $user->id;
+            }
         }
+
+        return false;
     }
     
     public function get_user($user_id) {

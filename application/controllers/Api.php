@@ -8,6 +8,7 @@ class Api extends CI_Controller {
 
   public function __construct() {
     parent::__construct();
+    header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
   }
 
@@ -20,18 +21,20 @@ class Api extends CI_Controller {
 
     $email = $this->input->post('email');
     $password = $this->input->post('password');
+
+    echo json_encode(array($email, $password));
     
-    if ($user_id = $this->user->resolve_user_login($email, $password)) {
-        $user = $this->user->get_user($user_id);
+    // if ($user_id = $this->user->resolve_user_login($email, $password)) {
+    //     $user = $this->user->get_user($user_id);
         
-        echo json_encode(array(
-          'result' => 'success',
-          'data' => $user,
-          'credentials' => array('user' => $this->AUTH_USER, 'pass' => $this->AUTH_PASS))
-        );
-    } else {
-        echo json_encode(array('result' => 'error', 'data' => null));
-    }
+    //     echo json_encode(array(
+    //       'result' => 'success',
+    //       'data' => $user,
+    //       'credentials' => array('user' => $this->AUTH_USER, 'pass' => $this->AUTH_PASS))
+    //     );
+    // } else {
+    //     echo json_encode(array('result' => 'error', 'data' => null));
+    // }
   }
 
   public function register_user() {
