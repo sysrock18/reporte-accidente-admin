@@ -15,7 +15,15 @@ class Home extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('home');
+      $this->load->model('accident');
+      $this->load->model('user');
+
+      $data = array(
+        'count_accidents' => $this->accident->get_accidents_count(),
+        'count_users' => $this->user->get_users_count(),
+      );
+
+      $this->load->view('home', $data);
     }
 
     public function user_logout() {
@@ -118,11 +126,50 @@ class Home extends CI_Controller {
     }
 
     public function users() {
-      $this->load->view('users');
+      $page = 1;
+      if ($this->input->get('page')) {
+        $page = (int)$this->input->get('page');
+      }
+
+      $this->load->model('user');
+      $result = $this->user->get_all_by_page($page);
+
+      $data = array(
+        'users' => $result['data'],
+        'count' => $result['count'],
+        'page' => $page
+      );
+
+      $this->load->view('users', $data);
     }
 
-    public function user_form($id = null) {
-      echo $id;
+    public function user_register() {
+      $id = $this->input->post('id');
+      $name = $this->input->post('name');
+      $password = $this->input->post('password');
+      $email = $this->input->post('email');
+      $is_admin = $this->input->post('is_admin');
+
+      $this->load->model('user');
+
+      if (strlen($id) > 0) {
+        $this->user->update($id, $name, $email, $password, $is_admin);
+      } else {
+        $this->user->create($name, $email, $password, $is_admin);
+      }
+
+      redirect(base_url('home/users'), 'location');
+      return;
+    }
+
+    public function user_delete() {
+      $id = $this->input->post('id');
+
+      $this->load->model('user');
+      $this->user->delete($id);
+
+      redirect(base_url('home/users'), 'location');
+      return;
     }
 
 }

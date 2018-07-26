@@ -22,6 +22,18 @@
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Bienvenido</h1>
           </div>
+          <div class="row m-5">
+            <div class="dashboard-card col-md-4 text-center py-3 mr-3">
+              <i class="icon ion-md-warning"></i>
+              <h2><?php echo $count_accidents ?></h2>
+              <div>Accidentes reportados</div>
+            </div>
+            <div class="dashboard-card col-md-4 text-center py-3">
+              <i class="icon ion-md-contacts"></i>
+              <h2><?php echo $count_users ?></h2>
+              <div>Usuarios registrados</div>
+            </div>
+          </div>
         </main>
       </div>
     </div>

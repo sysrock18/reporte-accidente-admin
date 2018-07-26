@@ -9,7 +9,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://unpkg.com/ionicons@4.2.5/dist/css/ionicons.min.css" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/home.css') ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/accident_types.css') ?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/styles.css') ?>" rel="stylesheet">
   </head>
 
   <body>

@@ -21,7 +21,6 @@ class Accident extends CI_Model {
         return $this->db->insert('accidents', $data);
     }
 
-
     public function get_all_by_page($page, $filters) {
         $this->db->select('count(*) OVER() AS count, accidents.*, users.name AS username, accident_types.name AS accident_type_name', false);
         $this->db->join('users', 'users.id = accidents.user_id');
@@ -47,5 +46,9 @@ class Accident extends CI_Model {
             'data' => $records,
             'count' => (int)$count
         );
+    }
+
+    public function get_accidents_count() {
+        return $this->db->count_all_results($this->table);
     }
 }

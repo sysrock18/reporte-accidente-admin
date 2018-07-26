@@ -43,7 +43,7 @@ class Api extends CI_Controller {
     $password = $this->input->post('password');
     $name = $this->input->post('name');
 
-    $result = $this->user->create_user($name, $email, $password, (int)false);
+    $result = $this->user->create($name, $email, $password, (int)false);
 
     if ($result) {
       $user_id = $this->db->insert_id();
