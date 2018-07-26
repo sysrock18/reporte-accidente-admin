@@ -16,7 +16,7 @@ class Accident_type extends CI_Model {
         return $this->db->insert($this->table, $data);
     }
 
-    public function get_all($page) {
+    public function get_all_by_page($page) {
         $this->db->select('count(*) OVER() AS count, *', false);
 
         $records = $this->db->get($this->table, 10, ($page * 10) - 10)->result();
@@ -30,6 +30,10 @@ class Accident_type extends CI_Model {
             'data' => $records,
             'count' => (int)$count
         );
+    }
+
+    public function get_all() {
+        return $this->db->get($this->table)->result();
     }
 
     public function update($id, $name) {

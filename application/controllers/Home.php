@@ -36,7 +36,7 @@ class Home extends CI_Controller {
       }
 
       $this->load->model('accident_type');
-      $result = $this->accident_type->get_all($page);
+      $result = $this->accident_type->get_all_by_page($page);
 
       $data = array(
         'accident_types' => $result['data'],
@@ -74,7 +74,47 @@ class Home extends CI_Controller {
     }
 
     public function accidents_report() {
-      $this->load->view('accidents_report');
+      $page = 1;
+      if ($this->input->get('page')) {
+        $page = (int)$this->input->get('page');
+      }
+
+      if ($this->input->post('accident_type')) {
+        $this->session->set_userdata('filter_accident_type', $this->input->post('accident_type'));
+      }
+
+      if ($this->input->post('date_to') && $this->input->post('date_from')) {
+        $this->session->set_userdata('filter_date_to', $this->input->post('date_to'));
+        $this->session->set_userdata('filter_date_from', $this->input->post('date_from'));
+      }
+
+      $filters['accident_type'] = $this->session->userdata('filter_accident_type');
+      $filters['date_to'] = $this->session->userdata('filter_date_to');
+      $filters['date_from'] = $this->session->userdata('filter_date_from');
+
+      $this->load->model('accident');
+      $result = $this->accident->get_all_by_page($page, $filters);
+
+      $this->load->model('accident_type');
+      $accident_types = $this->accident_type->get_all();
+
+      $data = array(
+        'accidents' => $result['data'],
+        'count' => $result['count'],
+        'page' => $page,
+        'accident_types' => $accident_types
+      );
+
+      $this->load->view('accidents_report', $data);
+    }
+
+    public function clean_accidents_report() {
+      $this->session->unset_userdata('filter_accident_type');
+      $this->session->unset_userdata('filter_date_to');
+      $this->session->unset_userdata('filter_date_from');
+
+      redirect(base_url('home/accidents_report'), 'location');
+      return;
     }
 
     public function users() {

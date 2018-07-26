@@ -3,6 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Api extends CI_Controller {
 
+  private $AUTH_USER = 'admin';
+  private $AUTH_PASS = 'admin';
+
   public function __construct() {
     parent::__construct();
     header('Content-Type: application/json');
@@ -21,7 +24,11 @@ class Api extends CI_Controller {
     if ($user_id = $this->user->resolve_user_login($email, $password)) {
         $user = $this->user->get_user($user_id);
         
-        echo json_encode(array('result' => 'success', 'data' => $user));
+        echo json_encode(array(
+          'result' => 'success',
+          'data' => $user,
+          'credentials' => array('user' => $this->AUTH_USER, 'pass' => $this->AUTH_PASS))
+        );
     } else {
         echo json_encode(array('result' => 'error', 'data' => null));
     }
@@ -54,29 +61,27 @@ class Api extends CI_Controller {
     $user_id = $this->input->post('user');
     $accident_type_id = $this->input->post('accident_type');
     $comments = $this->input->post('comments');
+    $date = $this->input->post('date');
 
-    $result = $this->accident->create_accident($user_id, $accident_type_id, $comments);
+    $result = $this->accident->create($user_id, $accident_type_id, $comments, $date);
 
     if ($result) {
       $accident_id = $this->db->insert_id();
-      echo json_encode(array('result' => 'success', 'data' => $user_id));
+      echo json_encode(array('result' => 'success', 'data' => $accident_id));
     } else {
       echo json_encode(array('result' => 'error', 'data' => null));
     }
   }
 
   private function require_auth() {
-    $AUTH_USER = 'admin';
-    $AUTH_PASS = 'admin';
-
     header('Cache-Control: no-cache, must-revalidate, max-age=0');
 
     $has_supplied_credentials = !(empty($_SERVER['PHP_AUTH_USER']) && empty($_SERVER['PHP_AUTH_PW']));
 
     $is_not_authenticated = (
       !$has_supplied_credentials ||
-      $_SERVER['PHP_AUTH_USER'] != $AUTH_USER ||
-      $_SERVER['PHP_AUTH_PW']   != $AUTH_PASS
+      $_SERVER['PHP_AUTH_USER'] != $this->AUTH_USER ||
+      $_SERVER['PHP_AUTH_PW']   != $this->AUTH_PASS
     );
 
     if ($is_not_authenticated) {

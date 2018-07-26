@@ -38,7 +38,7 @@
                   <tr>
                       <th>Id</th>
                       <th>Nombre</th>
-                      <th>Acciones</th>
+                      <th class="actions">Acciones</th>
                   </tr>
               </thead>
               <tbody>

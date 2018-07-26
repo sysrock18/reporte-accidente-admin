@@ -36,7 +36,10 @@ table.table th i {
   margin: 0 5px;
   cursor: pointer;
 }
-table.table th:last-child {
+table.table th:first-child {
+  width: 50px;
+}
+table.table th.actions {
   width: 100px;
 }
 table.table td a {
