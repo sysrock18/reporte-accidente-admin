@@ -43,10 +43,14 @@ class User extends CI_Model {
         $this->db->delete($this->table, array('id' => $id, 'protected' => 0));
     }
     
-    public function resolve_user_login($email, $password) {
+    public function resolve_user_login($email, $password, $admin = false) {
         $this->db->from($this->table);
         $this->db->where('email', $email);
-        $this->db->where('is_admin', 1);
+
+        if ($admin) {
+            $this->db->where('is_admin', 1);
+        }
+        
         $user = $this->db->get()->row();
         
         if ($user) {
@@ -59,10 +63,10 @@ class User extends CI_Model {
     }
     
     public function get_user($user_id) {
-        $this->db->from($this->table);
+        $this->db->select('id, name, email, is_admin');
         $this->db->where('id', $user_id);
 
-        return $this->db->get()->row();
+        return $this->db->get($this->table)->row();
     }
 
     public function get_all_by_page($page) {

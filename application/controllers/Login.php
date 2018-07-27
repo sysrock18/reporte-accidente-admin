@@ -35,7 +35,7 @@ class Login extends CI_Controller {
             $email = $this->input->post('email');
             $password = $this->input->post('password');
             
-            if ($user_id = $this->user->resolve_user_login($email, $password)) {
+            if ($user_id = $this->user->resolve_user_login($email, $password, true)) {
                 $user = $this->user->get_user($user_id);
                 
                 $userdata = array(
