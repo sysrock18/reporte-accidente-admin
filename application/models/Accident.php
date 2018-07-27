@@ -15,8 +15,9 @@ class Accident extends CI_Model {
             'user_id' => $user_id,
             'accident_type_id' => $accident_type_id,
             'comments' => $comments,
-            'date' => $date
         );
+
+        $this->db->set('date', "TO_TIMESTAMP('".$date."','MM/DD/YYYY HH24:MI:SS')", FALSE);
         
         return $this->db->insert('accidents', $data);
     }
