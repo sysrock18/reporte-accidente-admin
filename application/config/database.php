@@ -73,12 +73,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
+// 
+// 
+// 
+
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'simon',
-	'password' => 'simon',
-	'database' => 'accident-report',
+	'hostname' => 'pellefant.db.elephantsql.com',
+	'username' => 'yfgyeawv',
+	'password' => 'UbaNfS6rZnt2O0D1z5j76m0Pfhc8ZJ4J',
+	'database' => 'yfgyeawv',
 	'dbdriver' => 'postgre',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
