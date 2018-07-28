@@ -1,7 +1,7 @@
 Reporte Accidente Administrador
 ===============================
 
-[](https://reporte-accidente.herokuapp.com/)
+https://reporte-accidente.herokuapp.com/
 
 ****************
 Algunas capturas
@@ -41,19 +41,19 @@ Algunas capturas
 Tecnologías y Herramientas empleadas
 ************************************
 
-- [Codeigniter 3.1.9](https://codeigniter.com/)
+- ![Codeigniter 3.1.9](https://codeigniter.com/)
 
-- [Bootstrap 4.1.3](https://getbootstrap.com/)
+- ![Bootstrap 4.1.3](https://getbootstrap.com/)
 
-- [JQuery 3.3.1](https://babeljs.io/)
+- ![JQuery 3.3.1](https://babeljs.io/)
 
-- [TWBS Pagination](https://github.com/josecebe/twbs-pagination)
+- ![TWBS Pagination](https://github.com/josecebe/twbs-pagination)
 
-- [Deploy on heroku](https://www.heroku.com/)
+- ![Deploy on heroku](https://www.heroku.com/)
 
-- [PostgreSQL](https://www.postgresql.org/)
+- ![PostgreSQL](https://www.postgresql.org/)
 
-- [Ionicons](https://ionicons.com/)
+- ![Ionicons](https://ionicons.com/)
 
 *************
 Desarrollador
