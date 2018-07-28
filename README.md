@@ -1,6 +1,5 @@
-###############################
 Reporte Accidente Administrador
-###############################
+===============================
 
 [](https://reporte-accidente.herokuapp.com/)
 
